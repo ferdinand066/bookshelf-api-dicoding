@@ -1,5 +1,5 @@
-const books = require("../books");
-const sendResponse = require("../helper");
+const books = require('../books');
+const sendResponse = require('../helper');
 
 const updateOneBookById = (request, h) => {
   const {
@@ -16,20 +16,20 @@ const updateOneBookById = (request, h) => {
   if (name === undefined) {
     return sendResponse(
       h,
-      "fail",
-      "Gagal memperbarui buku. Mohon isi nama buku",
+      'fail',
+      'Gagal memperbarui buku. Mohon isi nama buku',
       null,
-      400
+      400,
     );
   }
 
   if (readPage > pageCount) {
     return sendResponse(
       h,
-      "fail",
-      "Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount",
+      'fail',
+      'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount',
       null,
-      400
+      400,
     );
   }
 
@@ -39,10 +39,10 @@ const updateOneBookById = (request, h) => {
   if (index === -1) {
     return sendResponse(
       h,
-      "fail",
-      "Gagal memperbarui buku. Id tidak ditemukan",
+      'fail',
+      'Gagal memperbarui buku. Id tidak ditemukan',
       null,
-      404
+      404,
     );
   }
 
@@ -60,7 +60,7 @@ const updateOneBookById = (request, h) => {
     updatedAt: new Date().toISOString(),
   };
 
-  return sendResponse(h, "success", "Buku berhasil diperbarui", null, 200);
+  return sendResponse(h, 'success', 'Buku berhasil diperbarui', null, 200);
 };
 
 module.exports = updateOneBookById;

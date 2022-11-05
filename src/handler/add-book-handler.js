@@ -1,6 +1,6 @@
-const { nanoid } = require("nanoid");
-const books = require("../books");
-const sendResponse = require("../helper");
+const { nanoid } = require('nanoid');
+const books = require('../books');
+const sendResponse = require('../helper');
 
 const addBook = (request, h) => {
   const {
@@ -13,14 +13,13 @@ const addBook = (request, h) => {
     readPage,
     reading,
   } = request.payload;
-  
 
-  if (name === undefined){
-      return sendResponse(h, "fail", "Gagal menambahkan buku. Mohon isi nama buku", null, 400);
+  if (name === undefined) {
+    return sendResponse(h, 'fail', 'Gagal menambahkan buku. Mohon isi nama buku', null, 400);
   }
 
-  if (readPage > pageCount){
-    return sendResponse(h, "fail", "Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount", null, 400);
+  if (readPage > pageCount) {
+    return sendResponse(h, 'fail', 'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount', null, 400);
   }
 
   const timestamp = new Date().toISOString();
@@ -43,15 +42,15 @@ const addBook = (request, h) => {
 
   books.push(book);
 
-  const isSuccess = books.filter((book) => book.id === bookId).length > 0;
+  const isSuccess = books.filter((b) => b.id === bookId).length > 0;
 
   if (isSuccess) {
-    return sendResponse(h, "success", "Buku berhasil ditambahkan", {
-        bookId: bookId
+    return sendResponse(h, 'success', 'Buku berhasil ditambahkan', {
+      bookId,
     });
   }
 
-  return sendResponse(h, "error", "Buku gagal ditambahkan", null, 500);
+  return sendResponse(h, 'error', 'Buku gagal ditambahkan', null, 500);
 };
 
 module.exports = addBook;
